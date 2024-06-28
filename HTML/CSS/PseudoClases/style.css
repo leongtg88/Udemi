@@ -1,0 +1,80 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul li{
+    font-size: 20px;
+}
+
+ul li:first-child{
+    color:blueviolet;
+    font-weight: bold;
+}
+
+ul li:nth-child(2){
+    color:blue;
+    font-weight: bold;
+}
+
+ul li:last-child{
+    color:grey;
+    font-weight: bold;
+}
+
+#mi-enlace{
+   
+    color: lightcoral;
+}
+
+
+#mi-enlace:link{
+    
+    color: red;
+}
+
+
+#mi-enlace:visited{
+ 
+    color: green;
+}
+
+
+#mi-enlace:hover{
+   
+    color: blue;
+}
+
+
+#mi-enlace:active{
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(102, 255, 0);
+}
+
+
+#mi-enlace:hover{
+    color: blue;
+}
+
+input[type="text"]{
+    margin-top: 20px;
+    padding: 10px;
+}
+
+
+
+input[type="text"]:focus{
+    border: 4px dashed red;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
