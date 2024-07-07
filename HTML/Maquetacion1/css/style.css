@@ -9,14 +9,73 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: "fajala";
+    src: url("fonts/FjallaOne-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+    @font-face {
+        font-family: "icons";
+        src: url("fonts/websymbols-regular-webfont.svg#WebSymbolsRegular") format('svg'),
+        url('fonts/websymbols-regular-webfont.eot');
+        src: url("fonts/websymbols-regular-webfont.eot?#iefix") format("embedded-opentype"),
+        url("fonts/websymbols-regular-webfont.woff") format("woff"),
+        url("fonts/websymbols-regular-webfont.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+}
 /*estilos generales*/
 *{
     padding: 0px;
     margin: 0px;
 }
 
+.icon{
+    font-family: "icons";
+    float: left;
+    margin-right: 5px;
+    margin-top: -2px;
+}
+
+
 body{
     background:url(../img/recursos-maquetacion-1-master-css-victor-robles/img/paven.png);
+}
+
+a {
+    color: #529125;
+    text-decoration: none;
+}
+
+
+a:visited {
+    color: #529125;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #285616;
+    text-decoration: none;
+}
+
+.red{
+    color: #9b2422 !important;
+}
+
+.blue{
+    color: #0c73f2 !important;
+}
+
+.orange{
+    color: #d69d2a;
+}
+
+.clear-fix{
+    float:none;
+    clear:both;
 }
 
 /*formularios*/
@@ -37,7 +96,7 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 select:focus{
    border: 1ps solid #70b231;
-   color: black;
+   color:black;
 
 }
 
@@ -52,6 +111,22 @@ button{
     background-color: #70b231;
     border:solid 1px green;
     cursor: pointer;
+}
+
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover{
+box-shadow: 0px 0px 2px gray;
+}
+
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+button:active{
+box-shadow: 0px 0px 3px gray inset;
+text-shadow: 0px 0px 1px #ccc;
 }
 
 
@@ -187,18 +262,28 @@ width: 1090px;
     width: 1250px;
     min-height: 1100px;
     margin: 0px auto;
+    font-family: sans-serif, Arial, Helvetica;
 }
 
 
 /*barra lateral*/
 
-#aside {
+#aside, #frase {
+    
     width: 200px;
     float: left;
     margin: 30px;
     background-color: white;
     border: 1px solid #ccc;
     box-shadow: 0px 2px 2px #ccc;
+    font-family: sans-serif;
+}
+
+#frase{
+    
+    width: 180px;
+    padding: 10px;
+    font-size: 14px;
     font-family: sans-serif;
 }
 
@@ -224,8 +309,121 @@ width: 1090px;
     text-align: center;
     padding-top:2px;
     padding-bottom: 2px;
+    margin-bottom: 15px;
     border-left: none;
     border-right: none;
     background: #f2f3f2;
     border: solid 1px #ccc;
+}
+
+#aside li{
+    margin-top: 8px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    list-style: square;
+}
+
+/*formularios barra lateral*/
+
+#aside div label,
+#aside div label[type="text"],
+#aside div label[type="email"],
+#aside div label[type="password"],
+#aside div a{
+    display: block;
+    width: 95%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+
+}
+
+#aside div input[type="buttom"],
+#aside div input[type="submit"],
+#aside div button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: white; 
+}
+
+#aside input,
+#aside label{
+    margin: 0px auto;
+    text-align: center;
+}
+
+
+/*Secciones*/
+#sections{
+    float: right;
+    width: 75%;
+    font-family: sans-serif,Arial, Helvetica;
+    margin-right: 20px;
+}
+
+
+#sections .titulo{
+    font-family: "fajala";
+    font-size: 24px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc; 
+    margin-top: -20px;
+}
+
+#sections section{
+    margin-top: 40px;
+    background-color: white;
+    padding: 20px;
+    border: #ccc;
+    box-shadow: 0px 0px 4px #c9c9c9;
+    color: #333333;
+    font-size: 16px;
+    overflow: hidden ;    
+}
+
+#sections .article{
+    margin: 20px 10px;
+}
+
+#sections .date{
+    color: gray;
+    font-size: 14px;
+}
+
+#sections .stikerOne,
+#sections .stikerTwo{
+     position: absolute;
+    margin-top: -38px;
+    z-index: 0;
+}
+
+#sections .stikerTwo{
+    margin-left: 860px;
+}
+
+
+#history{
+    float: right;
+    margin-top: 20px;
+    font-family: sans-serif, Arial, Helvetica;
+    margin-right: 20px;
+}
+/*FOOTER*/
+
+footer{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 40px;
+    background-color: #333333;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:white;
+    font-family: sans-serif;
+    font-size: 14px;
+    box-shadow: 0px 0px 2px gray;
+    
 }
