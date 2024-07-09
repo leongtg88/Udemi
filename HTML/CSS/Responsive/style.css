@@ -37,14 +37,14 @@ aside{
     line-height: 700px;
 }
 
-#article{
+#articles{
     width: 75%;
     min-height: 700px;  
     float:left;
     background-color: lemonchiffon;
 }
 
-#article article{
+#articles article{
     width: 25%;
     height: 150px;
     background-color: green;
@@ -53,4 +53,53 @@ aside{
     border: 2px solid white;
     float: left;
     margin: 15px;
+}
+
+/* mediaquerys*/
+
+/* desde amchura 0px hasta 888px de pantalla*/
+@media(max-width: 888px){
+/*se ejuctaran estos estilos*/
+
+    #articles article{
+        width: 40%;
+        background: red;
+    }
+
+}
+
+@media(max-width: 632px){
+    
+#container{
+        overflow: hidden;
+}
+
+
+    aside{
+        float:none;
+        min-height: auto;
+        line-height: 20px;
+        width: 92%;
+        padding: 19px;
+    }
+    
+
+    #articles{
+        width: 100%;
+    }
+
+    #articles article{
+        width: 91%;
+        background: blue;
+    }
+
+
+}
+
+
+@media(max-width: 554px){
+    body{
+        
+        background: salmon;
+    }
 }
