@@ -1,0 +1,24 @@
+/*fuentes*/
+@font-face {
+    font-family: 'TrubuchetMS';
+    src: url(/HTML/CSS/Maquetacion2/css/fonts/TrebuchetMS.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url(/HTML/CSS/Maquetacion2/css/fonts/BebasNeue.otf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'WebSymbolsRegular';
+    src: url(/HTML/CSS/Maquetacion2/css/fonts/websymbols-regular-webfont.eot);
+    src: url(/HTML/CSS/Maquetacion2/css/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url(/HTML/CSS/Maquetacion2/css/fonts/websymbols-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    ;
+    font-weight: normal;
+    font-style: normal;
+}
