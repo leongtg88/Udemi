@@ -1,6 +1,6 @@
 /*fuentes*/
 @font-face {
-    font-family: 'TrubuchetMS';
+    font-family: 'TrebuchetMS';
     src: url(/HTML/CSS/Maquetacion2/css/fonts/TrebuchetMS.ttf);
     font-weight: normal;
     font-style: normal;
@@ -32,9 +32,13 @@
 }
 
 
-.gear{
+
+.gear, .icon{
     font-family: 'WebSymbolsRegular';
 }
+
+
+
 
 body{
     background: url(/HTML/CSS/Maquetacion2/img/recursos-maquetacion-2-master-css-victor-robles/recursos-maquetacion-2-master-css-victor-robles/img/pattern.png);
@@ -43,7 +47,7 @@ body{
 
 
 .wrap{
-    width: 1200px;
+    width: 1250px;
     margin: auto;
 }
 /*cabecera*/
@@ -111,4 +115,156 @@ body{
 #menu ul li a:hover{
     color:#37bcf9;
     transform: scale(1.2, 1.2);
+}
+
+/*BANNER*/
+
+#banner{
+    width: 96.6%;
+    height: 100px;
+    border: 10px solid white; 
+    box-shadow: 0px 0px 2px gray;
+    background: url("/HTML/CSS/Maquetacion2/img/recursos-maquetacion-2-master-css-victor-robles/recursos-maquetacion-2-master-css-victor-robles/img/bakbaner.png");
+    background-position: -200px -200px;
+    margin: 20px auto;
+}
+
+#banner h1{
+    display: block;
+    width: 850px;
+    font-family: "BebasNeue";
+    color: white;
+    font-size: 45px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    margin: 27px auto;
+    text-shadow: 2px 2px 1px black;
+}
+
+/* tarjetas*/
+
+.card{
+    float: left;
+    overflow: hidden;
+    height: 305px ;
+    width: 205px;
+    margin: 23px ;
+    margin-top: 40px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 2px #ddd;
+    background: white;
+    cursor: pointer;
+
+}
+
+.card:last-child{
+    margin-right: 0px;
+}
+
+.card .icon{
+    display: block;
+    width: 100%;
+    height: 130px;
+    font-size: 50px;
+    line-height: 110px;
+    text-align: center;
+    margin: 0px auto;
+}
+
+.card .category{
+    width: 100%;
+    height: 50px;
+    font-family: "TrebuchetMS";
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    color: #00538c
+}
+
+.card .description{
+    text-align: center;
+    color: #056fb6;
+    font-family: "TrebuchetMS" ;
+}
+
+
+/*Barra lateral*/
+
+
+#lateral{
+    width: 300px;
+    min-height: 1200px;
+    font-family: "TrebuchetMS";
+    float: right;
+    margin: 20px;
+
+}
+
+aside h3{
+    display: block;
+    width: auto;
+    height: 45px;
+    line-height: 45px;
+    background: url('/HTML/CSS/Maquetacion2/img/recursos-maquetacion-2-master-css-victor-robles/recursos-maquetacion-2-master-css-victor-robles/img/pxgray.png'), white ;
+    box-shadow: 0px 1px 0px #393d3f, 1px 2px 0px #393d3f, 2px 3px 0px #393d3f, 3px 4px 0px #393d3f;
+    font-size: 30px;
+    font-family: "BebasNeue";
+    letter-spacing: 2px;
+    padding-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#lateral h3:first-child{
+        margin-top: 0px;
+}
+
+#search{
+    width: 90%;
+    height: 30px;
+    margin: 10px auto;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 4px #ccc inset;
+}
+
+#lateral input[type="text"]{
+    width: 85%;
+    height: 30px;
+    border: none;
+    padding-left: 5px;
+    border-radius: 5px;
+    background-color:transparent ;
+    color: #ccc;
+    transition: all 300ms;
+}
+
+#lateral input[type="text"]:focus{
+
+    color: #555;
+}
+
+#lateral input[type="button"], 
+#lateral input[type="submit"]{
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid #ccc;
+    color: #555;
+    padding-left: 7px;
+}
+
+
+.aside-box{
+    width: 85%;
+    height: 240%;
+    margin: 0px auto;
+    margin-top: 20px;
+    padding-top: 2px;
+    background: white;
+    
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3), 0px 3px 7px rgba(0, 0, 0, 0.3), 0px 1px white inset, 0px -3px 2px rgba(0, 0, 0, 0.3) inset;
 }
