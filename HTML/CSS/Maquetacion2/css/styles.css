@@ -59,6 +59,13 @@ body{
     color:white;
 }
 
+
+.clearfix{
+    float: none;
+    clear: both;
+}
+
+
 #logo{
     float: left;
     width: 200px;
@@ -351,3 +358,45 @@ aside h3{
     text-decoration: underline;
     color:#056fb6;
 }    
+
+
+#social{
+    height: 190px;
+}
+
+
+#social a{
+    display: block;
+    text-decoration: none;
+    color:#333;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+
+}
+
+/*articulos*/
+
+#articles{
+    width: 860px;
+    float: left;
+}
+
+#articles h2{
+    display: block;
+    width:  100%;
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+    font-family: "BebasNeue";
+    font-size: 40px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    background: url('/HTML/CSS/Maquetacion2/img/recursos-maquetacion-2-master-css-victor-robles/recursos-maquetacion-2-master-css-victor-robles/img/pxgray.png'), white;
+    box-shadow: 0px 1px 0px #393d3f, 1px 2px 0px #393d3f, 2px 3px 0px #393d3f, 3px 4px 0px #393d3f;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
