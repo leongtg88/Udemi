@@ -86,8 +86,44 @@ body{
     font-size: 30px;
     margin-top: 8px;
     margin-left: 26px;
+    animation: rotategear;
+    animation-duration: 2s;
+    animation-iteration-count: infinite ;
+    animation-timing-function: linear;
 }
 
+@keyframes rotategear{
+    form{
+        trasnform: rotateZ(0deg);
+
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+#logo:hover .gear{
+    animation: fromBellow 500ms linear;
+}
+
+@keyframes fromBellow{
+    0%{
+        transform: translateY(0%);
+    }
+    50%{
+        transform: translateY(200%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+
+#logo:hover{
+    border-radius: 2px;
+    color:black;
+    background-color: #ccc;
+}
 
 #logo h3{
     display: block;
@@ -96,6 +132,21 @@ body{
     font-size: 40px;
     margin-right: 65px;
     transition: all 300ms;
+}
+
+#logo:hover h3{
+    animation: fromRight 300ms linear;
+}
+
+
+@keyframes fromRight {
+    from{
+        transform: translatex(200%);
+    }
+    to{
+        transform: translatex(0%);
+    }
+
 }
 
 #menu{
@@ -399,4 +450,147 @@ aside h3{
     margin: 0px auto;
     margin-top: 20px;
     margin-bottom: 15px;
+}
+
+#articles article{
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    margin: 40px auto;
+    padding: 10px;
+    font-family: "TrebuchetMS";
+    color: black;
+    box-shadow: 1px 1px 2px #ddd;
+    background: white;
+}
+
+#articles article h4{
+    display: bloc;
+    font-size: 23px;
+    margin: 3px;
+}
+
+#articles article h4 a{
+    text-decoration: none;
+    color: #056fb6;
+}
+
+
+#articles article h4 a:hover{
+    text-decoration: underline;
+    
+}
+
+#articles .data{
+    float: right;
+    background: #393d3f;
+    color: white;
+    height: 30px;
+    line-height: 30px;
+    margin: -10px;
+    padding: 4px;
+    font-size: 15px;
+    border-radius: 0px 0px 0px 5px;
+}
+
+#articles .data span{
+    margin: 6px;
+}
+
+#articles article p{
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+
+#blog{
+    height: 100px;
+    margin-top: 60px;
+    line-height: center;
+    text-align: center;
+    
+}
+
+#blog a{
+    display: block;
+    font-family: "BebasNeue";
+    font-size: 40px;
+    letter-spacing: 3px;
+    color: #00538c;
+    text-decoration: none;
+}
+
+/*Footer*/
+
+#footer{
+    width: 100%;
+    height: 470px;
+    background: black;
+    color: white;
+    overflow: hidden;
+}
+
+#footer .wrap > div {
+    float: left;
+    width: 300px;
+    height: 370px;
+    margin: 40px;
+    text-align: center;
+    color: aliceblue;
+    font-family: 'TrebuchetMS';
+}
+
+footer a{
+    text-decoration: none;
+    color: #37bcf9;
+    transition: all 300ms;
+}
+
+#footer h5{
+    display: block;
+    background: url('/HTML/CSS/Maquetacion2/img/recursos-maquetacion-2-master-css-victor-robles/recursos-maquetacion-2-master-css-victor-robles/img/pxgray.png') white;
+    height: 50px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-family: 'BebasNeue';
+    font-size: 40px;
+    line-height: 55px;
+    color: black;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#footer ul{
+    text-align: center;
+    margin: 20px;
+    font-size: 25px;
+
+}
+
+#footer ul li{
+    margin-top: 10px;
+    padding: 5px;
+    border-bottom: 1px solid white;
+}
+
+#footer ul li a{
+    display: block;
+    height: 40px;
+}
+
+#footer iframe{
+    width: 100%;
+    height: 300px;
+    margin-top:10px;
+    border-radius: 5px;
+    border: 5px solid white;
+    box-shadow: 0px 0px 5px gray;
+}
+
+#footer img {
+    margin-bottom: 15px;
+
+}
+
+#footer #browsers img{
+    width: 45px;
 }
