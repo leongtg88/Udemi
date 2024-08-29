@@ -60,6 +60,79 @@ p {
   border-color: green;
 }
 
+.clear-fix {
+  clear: both;
+}
+
+h1 {
+  font-size: 25px -1px;
+}
+
+.cajas {
+  width: 900px;
+  margin: 0px auto;
+}
+
+.caja {
+  width: 22.2222222222%;
+  float: left;
+  margin: 10px;
+}
+
+h1 {
+  color: pink;
+}
+
+.listado ul li:nth-child(1) {
+  color: orange;
+  font-size: 11px;
+}
+
+.listado ul li:nth-child(2) {
+  color: orange;
+  font-size: 12px;
+}
+
+.listado ul li:nth-child(3) {
+  color: orange;
+  font-size: 13px;
+}
+
+.listado ul li:nth-child(4) {
+  color: orange;
+  font-size: 14px;
+}
+
+.listado ul li:nth-child(5) {
+  color: orange;
+  font-size: 15px;
+}
+
+.listado ul li:nth-child(6) {
+  color: orange;
+  font-size: 16px;
+}
+
+.listado ul li:nth-child(7) {
+  color: orange;
+  font-size: 17px;
+}
+
+.listado ul li:nth-child(8) {
+  color: orange;
+  font-size: 18px;
+}
+
+.listado ul li:nth-child(9) {
+  color: orange;
+  font-size: 19px;
+}
+
+.listado ul li:nth-child(10) {
+  color: orange;
+  font-size: 20px;
+}
+
 h1 {
   text-decoration: underline;
 }

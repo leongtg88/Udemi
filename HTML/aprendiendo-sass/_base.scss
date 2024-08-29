@@ -90,3 +90,61 @@ p{
 
 }
 
+//operadores
+
+$caja:200px;
+$wrap:900px;
+
+.clear-fix{
+    clear: both;
+}
+
+h1{
+    font-size: 20px + 5px -1px;
+}
+
+.cajas{
+    width: $wrap;
+    margin: 0px auto;
+}
+
+.caja{
+    width:$caja /$wrap  * 100%;
+    float: left;
+    margin: 10px;
+}
+
+//condicionales -if
+
+$color-fondo: orange;  
+
+h1{
+@if $color-fondo == #ccc{
+    color: black;
+}@else if $color-fondo == black {
+    color: lightsalmon;
+}@else {
+    color:pink;
+}
+
+}
+
+
+
+
+//FOR
+
+$contador: 1;
+
+@for $contador from 1 through 10{
+
+    .listado ul li:nth-child(#{$contador}){
+
+        color: orange; 
+        font-size: $contador + 10px;
+    }
+}
+
+//each
+
+//while
