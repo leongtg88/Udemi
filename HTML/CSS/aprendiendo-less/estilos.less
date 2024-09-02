@@ -17,7 +17,7 @@ h1{
 .informacion{
     ul{
         a{
-            color:rgb(41, 131, 16);
+            color: blue;
             font-size: 18px;
         }
     }
@@ -32,4 +32,34 @@ h1{
 
 .informacion {
         .sombras(5px);
+    }
+
+    //operadores
+
+h1{
+    font-size: 30px + 7px;
+}
+
+    //mixins
+    
+.textoNegro(@value) when (@value=true){
+    color: black;
+}
+
+h1{
+    color: blue;
+    .textoNegro(blanco);
+}
+
+    
+    //bucles
+
+    .loop(@cont) when (@cont > 0){
+        .loop((@cont - 1));
+        height: (900px/cont);
+    }
+
+    .informacion{
+        height: 900px;
+        .loop(5);
     }
