@@ -4,8 +4,12 @@ body{
 }
 
 #layout{
+    display: flex;
+    
     border: 1px solid black;
     padding: 5px;
+    
+    flex-flow: row wrap;
 
 }
 
