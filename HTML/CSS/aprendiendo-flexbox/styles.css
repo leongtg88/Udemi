@@ -5,15 +5,18 @@ body{
 
 #layout{
     display: flex;
-    
     border: 1px solid black;
     padding: 5px;
-    
-    flex-flow: row wrap;
+    flex-flow: row  wrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    height: 700px;
 
 }
 
 .caja{
+    
+    
     font-size: 20px;
     font-weight: bold;
     text-align: center;
@@ -25,20 +28,26 @@ body{
 }
 
  .red{
+    
+    align-self: flex-start;
     background: red;
 }
 
 
  .green{
-    background: green;  
-}
-
-
- .blue{
-    background: blue;
-}
-
-
- .orange{
+    margin-top: 10%;
+     background: green;  
+    }
+    
+    
+    .blue{
+     align-self: center;
+     background: blue;
+    }
+    
+    
+    .orange{
+        
+        align-self: flex-end;
     background: orange;
 }
