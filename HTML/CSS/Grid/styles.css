@@ -2,6 +2,85 @@ body{
     font-family: sans-serif;
     text-align: center;
 }
+/* -------------------- EJERCICIO COMPLETO con areas-------------*/
+#website-areas *{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+#website-areas{
+    display: grid;  
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 150px 70px 1fr 70px;
+    grid-template-areas:
+        "cabecera cabecera cabecera cabecera cabecera"
+        "menu menu menu menu menu"
+        "contenido contenido contenido contenido lateral"
+        "pie pie pie pie pie"; 
+    width: 75%;
+    height: 100vh;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+
+#website-areas #cabecera {
+    grid-area: cabecera;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: blue;
+    color: white;
+
+}
+
+
+
+#website-areas #menu{  
+    line-height: 70px;
+    grid-area: menu;
+    background: lightblue;
+    color: black;
+}
+
+#website-areas  #menu    ul{
+    display: grid;
+    
+   grid-template-columns: repeat(9, 1fr);
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+   
+}
+
+#website-areas  #contenido{
+grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-area: contenido;
+    grid-gap: 25px;
+    padding: 20px;
+    background: #eee;
+}
+
+#website-areas #contenido article{
+    background: #ccc;
+    border: 1px solid #555;
+}
+
+#website-areas #lateral {
+    grid-area:lateral;
+    background: orange;
+    color:white;
+}
+
+#website-areas #pie-pagina{
+  grid-area: pie;
+    background: black;
+    color: white;
+}
+
+
+
 
 
 /* -------------------- EJERCICIO COMPLETO-------------*/
@@ -23,7 +102,7 @@ body{
     border: 1px solid #ccc;
 }
 
-#cabecera {
+#website #cabecera {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,22 +114,24 @@ body{
 
 
 
-#menu{  
+#website #menu{  
     grid-column: 1 / 6; 
+    line-height: 70px;
 
     background: lightblue;
     color: black;
 }
 
-#menu ul{
+#website #menu ul{
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     list-style: none;
     margin: 0px;
     padding: 0px;
+   
 }
 
-#contenido{
+#website #contenido{
     grid-column: 1 / 5;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -59,18 +140,18 @@ body{
     background: #eee;
 }
 
-#contenido article{
+#website #contenido article{
     background: #ccc;
     border: 1px solid #555;
 }
 
-#lateral {
+#website #lateral {
     grid-column: 5 / 6;
     background: orange;
     color:white;
 }
 
-#pie-pagina{
+#website #pie-pagina{
     grid-column: 1 / 6;
     background: black;
     color: white;
