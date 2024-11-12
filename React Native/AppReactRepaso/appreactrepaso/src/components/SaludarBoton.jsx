@@ -1,13 +1,11 @@
 import React from "react";
 
 export default function SaludarBoton (props){
-
-    const saludar = () =>{
-        alert("Hola Leon Gustavo Trujillo");
-    }
+    const {userInfo, saludarFn} = props;
+    const {nombre = "Anonimo"} = userInfo;
     return(
         <div>
-            <button onClick={saludar}>Hola</button>
+            <button onClick={()=>   saludarFn(props.userInfo)}>Hola</button>
         </div>
     );
 }

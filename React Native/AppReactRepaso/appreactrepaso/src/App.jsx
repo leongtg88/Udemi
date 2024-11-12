@@ -11,10 +11,14 @@ function App() {
 
   const user ={
 
-    nombre:"Leon Gustavo",
+    
     edad: 26,
     color: "azul"
   }
+
+  const saludarFn = (nombre, edad) => {
+    console.log("Hola " + nombre + "tiene" + edad +" años."  );
+  };
 
   return (
   <>
@@ -24,7 +28,7 @@ function App() {
         <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
         <Saludar userInfo={user}/>
-        <SaludarBoton />
+        <SaludarBoton  userInfo = {user} saludarFn = {saludarFn} />
       </div>
       <h1>React</h1>
 

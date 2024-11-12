@@ -88,11 +88,11 @@
             </header>
 
         </div>
-        <div class="row">
+        <div class="row ">
             <div class="col-md-8 mt-5">
 
-                <nav class="breadcrumb">
-                    <ol class="breadcrumb">
+                <nav class="breadcrumb bg-light pt-3 pl-5">
+                    <ol class="breadcrumb pr-3">
                         <li class="breadcrumb-item">
                             <a href="#">Inicio</a>
                         </li>
@@ -163,6 +163,94 @@
 
             </div>
 
+            <div class="col-md-4">
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Prueba
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Hola Leon</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Vas muy bien sigue asi!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Colpase -->
+            <p class="d-inline-flex gap-1">
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Link with href
+                </a>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Button with data-bs-target
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    Some placeholder content for the collapse component. This panel is hidden by default but revealed
+                    when the user activates the relevant trigger.
+                </div>
+            </div>
+            <!--fin collapse-->
+
+            <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                data-bs-placement="top" data-bs-content="Top popover">
+                Popover on top
+            </button>
+
+
+            <!---progres bar-->
+
+            <div class="progress mt-5">
+
+                <div id="barraprogreso" class="progress-bar w-50 bg-success w-0" role="progress-bar">
+                    0%
+                </div>
+
+                <script>
+                    const contador = 0;
+                    setInterval(function () {
+                        if (contador < 100) {
+                            contador++;
+                            const barra = document.querySelector("#barraprogreso");
+                            barra.style.width = contador + '% ';
+                            barra.innerHTML = contador + '%';
+                        }
+                    }, 1000)
+                </script>
+
+            </div>
+
+
+            <!---finprogres bar-->
+
+            <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom"
+                title="Si das click sacaras na alerta">
+                Alerta
+
+            </button>
+
+
         </div>
 
         <div class="row col-md-8">
@@ -204,6 +292,90 @@
 
 
         </div>
+
+        <nav aria-label="pagination" class="">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        &laquo;
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        1
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        2
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        3
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        &raquo;
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+
+
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 
