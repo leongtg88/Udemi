@@ -1,5 +1,11 @@
+.container-boton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 #boton{
-    display: block;
+    justify-content: center;
     padding: 20px;
     background-color: green;
     color: white ;
@@ -8,13 +14,13 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: none;
     border: 5px solid green;
-    transition:border 500ms, background 3s;
+    transition:border 500ms, background 1s;
 }
 
 #boton:hover{
     border-radius: 15px;
-    background-color: orangered;
-    border: 5px solid red;
+    background-color: blue;
+    border: 5px solid lightblue;
 }
 
 #caja{
@@ -39,7 +45,7 @@
         transform: rotate(0deg);
     }
     50%{
-        margin-left: 1200px;
+        margin-left: 2000px;
         transform: rotate(360deg);
         border-radius: 999px;
     }

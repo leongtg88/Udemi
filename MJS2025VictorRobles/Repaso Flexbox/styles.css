@@ -1,0 +1,30 @@
+body{
+    background-color: beige;
+}
+
+.flex-container{
+
+    border: 1px solid black;
+    justify-content: flex-start;
+    background: #ccc;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 20px;
+    align-items: center;
+    width: 80%;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.caja {
+    border: 1px solid rgb(70, 69, 69);
+    background-color: white;
+    color:  black;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    width: 120px;
+    line-height: 120px;
+    text-align: center;
+    margin: 5px;
+    overflow: hidden;
+}
