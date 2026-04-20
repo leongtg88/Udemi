@@ -1,0 +1,482 @@
+Pasos de este proyecto:
+
+1. npm install
+
+2. npm install --save bcrytjs (el --save es para que se guarde en el proyecto y no globalmente), nos va a permitit enpritar contraseñas.
+
+3. npm install --save cors esto nos va a permitir el acceso entre dominios hacer peticiones ajax de un frontend a un backend y que no se bloqueen esas peticiones
+
+4. npm install --save express es el framework http que nos permite gestionar los metodos, get, pos, push, crear un servidor web y definir rutas para manejar las peticiones.
+
+5. npm --save jwt-simple es una libreria que nos va a permitir los tokens de jwt
+
+6. npm install --save mongoose es un odm que nos permite tener una base de datos de mongodb
+
+7. npm install --save mongoose-paginate-v2
+
+8. npm install --save multer una libreria para subir ficheros a nuestro backend
+
+9. npm install --save validator un validador cualqquier informacion dque nos llegue de un usuario
+
+10. npm install --save openai nos permite conectarnos a los servicios y hacer consultas 
+
+11. npm install --save-dev nodemon nos permite actualizar nuestro servidor  cuando hacemos cambios en nuestro codigo (el dev es para desarrollo, en produccion no va a correr)
+
+12. En el package.json incluimos en script "start": "node index.js" 
+
+13. Para arrancar el proyecto, en la terminal escribimos npm start, pero antes de eso tenemos que arrancar el servidor de mongodb, para eso vamos a crear un archivo llamado arrancar-proyecto.bat con el siguiente contenido: start cmd.exe /k "cd C:\Program Files\MongoDB\Server\8.2\bin && mongod.exe --dbpath C:\data\db"
+start cmd.exe /k "cd C:\wamp64\www\\Desktop\Backend Node,Mong,Jwt,Ia && npm start".
+
+14. Importamos dependencias de expres y cors en el archivo index.js
+
+15. Creamos un folder que se llame database con un archivo conecction.js 
+
+16. En el archivo connection.js importamos mongoose y hacemos la conexion a la base de datos, para eso necesitamos la url de conexion, que es mongodb://localhost:27017/nombre-de-la-base-de-datos. Se hace un try catch y un await 
+
+17. Conectarnos a mongodb
+
+18. Exportamos la funcion
+
+19. Imortamos la funcion de connection en el archivo index.js para conectarse a la base de datos
+
+20. Crear el servidor de node
+
+21. Configurar el cors
+
+22. Convertir los datos del body a objetos de js
+
+23. Creamos una ruta de prueba(porque tenemos que crear las rutas, pero tendriamos que crear los controladores primero, entonces hacemos una prueba de momento)
+
+24. Poner a escuchar el servidor 
+
+25. Creacion de Folder "controllers", aqui vamos a tener todos los controladores de mi aplicacion, en donde tendremos 2 entidades, 1 de usuarios y otra de articulos.
+
+26. Creacion de archivo user.js, tendremos los metodos para registrar al usuario, sacar lo datos del perfil, subir la imagen de perfil etc, hacer peticiones, consultar y consumir.
+
+28. Acciones como registrar el usuario, identidicar, ver los datos, editar y actualiazar, subir y descargar imagenes.
+
+29. Exportacion de los metodos
+
+30. Procedemos a crear las rutas, creamos primero un folder que se llame routes y creamos un archivo user.js
+
+31. Importaciones: expres, express.Router y los controllers
+
+32. Tenemos las rutas para register, login para sacar el perfil de usuario con un identificador,update para cargar el usuario, upload pare actualizar el usuario con su identificador y le colocaremos un midleware aciertas rutas para colocarles autenticacion, el avatar para sacar datos del serivdor.
+
+33. se exportan las rutas que podran ser cargadas en el index.js
+
+34. En index.js exportamos las rutas y utilizamos esas rutas con el app.use(), que carga dentro de la aplicacion, delante o en un segmento en concreto de la url(esto es una especi de middleware), es decir llo que hago es que antes de cargar las rutas del usuario le pongo un segmento adelnate y cargo el user userRoutes. 
+
+35. Ahora haremos otro controlador pero para los articulos. Creamos un archivo en article.js en el folder de controllers.
+
+36. En article.js iniciamos creando acciones.(A veces no comenzamos importando nada sino despues, como modulos que vayamos necesitando posteriormente. ) 
+
+37. Exportamos las acciones
+
+38. Creamos las rutas para los articulos en el folder de rutas y creamos un archivo que se va a llamar article.js
+
+39. Importamos express, router y creamos ArticleController (el controlodor de los articulos)
+
+40. Definimos las rutas y lo podemos cargar en el index
+
+41. Modelos para crear un obejto de cierto tipo, creamos una carpeta llamada Modelsy adentro crearemos estso modelos que se usaran en los controladores. Dentro de modles creamos user.js
+
+42. Realizamos las importaciones para defini mi Schema
+
+43. Definimos el Schema, le pasamos un objeto json con el que vamos a trabajar en el backend, como el que usamos en nuestra base de datos. Mongo db crea el identificador al guardar un registro
+
+44.Exportamos el modelo,debemos usar el metodo model, indicar el modelo, el schema y la coleccion a la cual yo voy a guardar basandome de este modelo. El objeto users se guarda plural ya que en la base de datos se guardaran varios usuarios.
+
+45. Vamos a crear el Model de articulos, creamos un archivo article.js dentro del folder models
+
+46. Importamos el Schema y model de moongoose
+
+47.Definimos el schema
+
+48.Exportamos el model, hacemos el uso del metodo model, le pongo el nombre de mi entidadm le decimos el nombre del schema y luego el nombre de la coleccion de datos en plural.
+
+49. En este punto podemos hacer una revision en Postman, con el metodo POST a la http://localhost:3907/api/user/register y nos debe regresar u 200 con el mensaje de Accion para registrar usuario. Aqui lo importante es que los datos se mandan por el body, los podemos mandar en formdata, el  x-www-form-urlencoded o formato crudo que sera como el json.
+
+50. Los pasos que vamos a seguir para que emetodo de registro funcione son:
+el archivo user.js vamos a recoger los datos de la peticion, luego validar los datos, control de usuarios duplicados, en casos de superarlom cifrar la contraseña para luego guardar el usuario en la base de datos y luego devolver respuestas.
+
+51. Recoger los datos de la peticion: let body = req.body; 
+    51.1 Al realizar el POST en postman, da resultado hacerlo por x-www-form-urlencoded colocando  la key titulo y el value como palabra de ejem"terminator" y van los datos, si lo queremos enviar por raw abria que configrar el api para eso, tendria que indicarles los header en raw de tipo json, se tendria que agregar una key Content-type con value application/json y asi podemos recibir la informacion. 
+    Como en user.js nuestro Schema tiene name, username, nick etc todo esos datos tienen que pasarse como keys y para nos interesa hacer una validacion de datos para que pasen limpios y correctos.
+
+
+
+52. Validar los datos. Ahora vamos a validar la informacion que nos llega del usuario y para esto lo  podriamos hacer directamente en nuestra accion de nuestro controlador. Sin embargo, las validaciones se pueden hacer para muchos campos por lo que se puede convertir en un codigo extenso, que no merece la pena dejarlo en el archivo de user de controllers. Por eso vamos a crear un nuevo folder en nuestro poryecto que se va a llamar helpers, que tendra funciones para hacer pequeñas tareas
+
+. Control de usuarios duplicados
+
+. Cifrar la contraseña
+
+. Guardar el usuario en la base de datos
+
+27-51.1. Devolver la respuesta 
+
+53. Importacion del validator en el archivo creado validate-user.js
+
+54. Cracion de metoddo para validar nombre, aperllido, nick, email, contraseña y comprobar que todo se cumple (En la pagina de npm podemos encontrar todas las funcionalidades de este)
+
+55. Creamos la constante de la validacion en false para que a no ser que se cumplan todas las condiciones entonces pase a true.
+
+56. Creamos las condiciones para validar el name
+
+57. Vamos a comprobar que en caso de que name no se cumple, es decir se me da false la expresion que he preparado en la variable name, entonces voy a lanzar una excepcion. Con esta comprobacion podemos usar ese helper. Para eso nos vamos al archivo user.js de controllers e importamos el metodo validate que tenemos en nuestro archivo de validate-user.js 
+
+58.Exportamos el modulo
+
+59. Importamos el metodo validate en el archivo user.js de controllers
+
+60.52 Ya que la validacion es suceptible de arrojar errores lo metemos en un try/catch 
+
+61. Continuamos con la validacion de los apellidos 
+
+62. Vlidacion del nick
+
+63. Validacion del email
+
+64. Validacion de la contraseña
+
+65.57  En la 57.65  terminamos de validad todos los campos, si alguno de ellos no se valida entonces arroja el error/
+
+Seccion 12 Registrar usuarios,control de duplicados y gestion de contraseñas
+
+    Control de usuarios duplicados
+
+66. Para poder hacer esto, debemos tener acceso a la base de datos y a la coleccion de usuarios y para eso vamos a importar en el folder de controllers en el archivo de user.js 
+
+67. Ya tengo el obejto user, lo puedo utilizar como adapatador o capa intermedia para que se conecte a la base de datos. El $or me permite evaular varias condiciones. En este caso se comprueba si el email existe con x caracteristicas o un nick que nos llega del body, pues entonces lo que  hace es buscar en la coleccion de usuarios si existe coincidencia al que le mandamos y usamos el then para recoger el resultado de la promesa .
+
+68. Antes de guardar el usuario en la base de datos tenemos que cifrar la contraseña y crear un objeto para poder guardar ese usuario y otros detalles como el email pasarlo a lowercase y el nick tambien.
+
+69. Para cifrar la contraseña debemos importar una libreria en el user.js del folder controllers. Importamos la libreria bcrypt.
+
+70. Creamos una variable y hacemos un await para esperar que cifre la contraseña, y le pasamos el body como primer parametro y como segundo parametro un numero(salt) para que lo cifre un numero de veces, el salt es un valor aleatorio que se añade a la contraseña anted de aplicar ese algoritmo de hash
+
+  71. pasamos la password cifrada al body para que se guarde en la base de datos y la sobreescribimos sobre la password que habiamos genereado
+ 
+ 72.Creamos el objeto de usuario para poder guardarlo, pero lo pasamos a miniusculas primero. Podremos crear un objeto de usuario en base mi modelo en base a mi schema en models/user.js
+
+ 73. Si en el find ocurriera algun error no lo estamos capturando (estamos en controllers/user.js)
+
+ 74. Para guardar el usuario en la base de datos vamos a hacer un save y capturar lo que nos devuelve el save con un then, entonces dentro del callback prodria recoger ese resultado o captar un posible error con un catch. Pero si entro al callback del then, lo que voy a hacer es comprobar si no existe ese userSved, pero si todo va bien debo dar una respuesta entonces corto y pego el paso 27-51.1  y lo incluirira en el ounto 75. Ya en este punto comento el 27-51.1 para dejar resgistro de este paso pero que en el paso 74 esta respuesta pasa a ingresar dentro de la respuesta del userToSave.
+
+ 75. Se devuelve respuesta de usuario guardado
+
+ 76. Una vez que hemos obtenido la respuesta 200 podemos ver que nos regresa datos:
+ {
+    "status": "succes",
+    "user": {
+        "name": "Leon",
+        "surname": "Trujillo",
+        "nick": "leongtg",
+        "email": "leongtg88@gmail.com",
+        "avatar": "default.png",
+        "password": "$2b$10$VymGxqS.GaDQEKUIy13hnuZvEC93ZXeEbJmkHb1XdzUUysfMCNfiO",
+        "_id": "69b9e8e17beaecc53adb8727",
+        "created_at": "2026-03-17T23:50:57.323Z",
+        "__v": 0
+    }
+}
+tambien podemos verlo en nuestra consola de mongodb
+y lo que hacemos es quitar la contraseña
+y de cambia la propiedad user: userSaved por userCleaned en la linea 80.
+
+    Método del Login / Identificar el Usuario
+
+77.Vamos a hacer el metodo del login en controllers/user.js Vamos a mandar un email y contraseña y vamos a validar si existe en la base de datos, si extiste ese email en la base de datos lo vamos a comparar la contrañsea que tiuene ese email en la base de datos con la contraseña que nos envia el usuario, si coiciden se hace un token jwt. Con eso podemos identificar si el usuario esta identidicados o esta autenticados. 
+
+78.Comprobar que me llega bien: Si no me llega el body.email o si no me llega el body.password entonces voy a devilver un error.
+
+79. Comprbamos que el usuario existe
+
+80. Devuelvo el resultado: con un status succes y en vez del message, devuelvo user con su id, nick y name
+
+    Crear el Token JWT
+
+81.Creo el token jwt: No lo vamos a hacer en un controllador, puede ser en un helper o de una carpeta que se llame services 
+aparte donde voya crear jwt, donde cargo el payload  la clave secreta y donde lo podre devolver.
+Entonces dentro de Helpers vamos a crear un archivo jwt.js
+
+82. Importamos jwt simple
+
+83. Creamos una clave secreta que la voy a utilizar para codificar los tokens y payloads
+
+84. Creamos la funcion para generar tokens
+
+85. Creamos un payload
+
+86. Sacamos a la fecha actual en segundos y a los segunos les sumamos 30 dias por 24 horas por 60 min por 60 seg, entonces lo que hago es sumarle 30 dias a la fecha de expiracion actual, la llammamos en el iat y en el exp del payload
+
+87. //87 Generamos el token, le pasamos el payload y la clave secreta
+
+88. Importamos el token en controllers/user.js
+
+89.Creo el token: con esto podemos revisar en postman el token para mandarlo como autenticacion en las peticiones que querramos autenticar
+
+
+    Middleware
+
+90. Crearemos un metodo para probar la autenticacion en controllers/user.js
+La autenticacion debe realizarse en cada metodo que sean exlusivos de usuarios autenticados. Por ejemplo si creamos el metodo de subir un avatar tiene que subirse identificado. En el metodo de prueba se hace solo para los usuarios identificados
+
+91. Creamos la ruta para probar la autenticacion
+en routes/user.js y la probamos con nuestro localhost http://localhost:3907/api/user/solo-para-identificados
+Con el token de autenticacion podemos restringir esta url.
+En el caso de pensar en hacer este proceso para el resto de urls como hicimos ahora, seria ineficiente ya que repetirias codigo muchas veces. Para eso existen los midlewares
+El middleware se ejecuta antes de que se ejecute la accion del controlador, es un filtro inicial que se ejecuta antes de que se ejecute mi metodo soloparausuariosidentificiados
+
+92. Creamos una carpeta en la raiz de middleware, lo puedo tener para lo que yo quiera, para comprobar algo, para procesar info, para ejecutar algo, en este caso queremos tener la autenticacion y por esto creamos el archivo auth.js
+
+93. Creamos el middleware  (generalmente exportamos los modulos y se importaria la clave secreta pero hemos iniciado directo a este paso)  vamos a terner en la funcion un require, response y un next que es una funcion que me permite pasar luegoa la accion del controlador. Toda la funcionalidad que metamos aqui, no la voy a tener que tener dentro de cada accion (en este caso nos referimos al metodo soloparausuariosidentificiados en auth.js) esto se ejecutara antes del metodo. Y   como pdemos hacerlo? Pues en el fichero de rutas en user.js es donde aplico mis middlewares.
+
+94. En rutes/user.js importamos la constante
+
+95. 95 se añade un segundo paramatro despues de la primera (,)  y le pasamos el auth
+
+96. Entonces colocamos la funcon next() en auth.js
+para que el middleware termine de funcionar para que actualice la pantalla y podremos ver en la terminal que cada vez que ejecutmos el localhost se va a registrar el middleware.
+
+97.Importamos el modulo jwt
+
+98. Importamos la clave secreta
+
+99. Comprobamos se llega la cabecera de autenticacion
+
+100. En el token reemplazamos e eliminamos las comillas simples y dobles
+
+101. Decodificar el Tokem, hacemos un try /catch para poder capturar posibles errores y para saber si nos estamos identificando correctamente.
+
+102. Si queremos comprobar la expiracion del token y añadir los datos del usuario en el request debo hacerlo dentro del propio try- Uso el metodo decode de la libreria jwt si esto me lo da bien y no da un error
+
+103. Podemos usar un console log, probamos en postamn colocando la kye autorization y pasando el token
+
+104. Añadimos los datos del usuario a la request: Viculamos los datos que he sacado del token a mi request. 
+
+105. En controllers/user.js vamos a Entonces si yo me identifico y le paso el token a una url, dentro de mi metodo que lleva la autenticacion cimi midlever puedo hacer una propiuedad en la respuesta datosdelDusuario. Si hacemos una peticiom en http//localhost:3907/api/user/solo-para-identificados pdemos ver todos los datos. Si los datos no pasan bien debe decir autenticacion invalida
+
+ 106. En middleware/auth.js vamos a comprobar si el token es valido a la fecha de expiracion ya que si es muy antiguo no valdria. Por lo que harias una condicional
+
+
+ Perfiles y actualizacion de usuarios
+
+ 107. En constrollers/user.js tenemos varios metotod pendientes, comenzamos con el de perfil, tenemos la ruta por get en perfil
+
+ 108.Luego hacemos un findby id para buscar en la coleccion de usuarios. Y si no quiero que se muestren determinados datos utiliozamos el metodo select. No quiero que se muestre el passwor ni el created_at y luego con el then recojo la respuesta que me duvuelva . Si no queiro que se confunda con  el propio modelo le pdemos colcar otro nombre como myUser ydevolvemos una respuesta dentro del then 
+
+ 109. En el caso de que de un error hacemos un cathc
+
+ 110.En el caso de que todo salga bien, entramos al then con un if
+
+ 111. Si todo va bien entonce devolvemos el perfil del usuario 
+
+ Metodo de actualizar usuario
+
+112. En controllers/user.js vamos a hacer la url donde puedo mandar los datos del usuario para actualizar y que esta url pueda procesar la informacion y guardarme y actualizarme los datos de usuarios identificados por eso tengo que pasarle a la ruta de update la ruta de auth
+
+113. Lo primero que vamos a hacer es conseguir la identidad del usuario.Luego crear objeto con los datos nuevos. Luego validar si ya existe el usuario, comprbarlo con el usuario en la base de datos.
+
+114. Vamos a actualizar el metodo update como una funcion async para poder usar el await dentro de la funcion en todo momento, como todo es suceptible a errores lo vamos a meter en un try/cathc dentro de la funcion update
+
+115.Conseguir el ide del usuario identificado
+
+116. Crear objeto con datos nuevos: vamos a comprobar en el body esos datos  que me llegan y si no existen vamos a usar los datos del userIdentity
+
+117. Vamos a validar los datos del usuario(de userToUpdate) y tambien lo incluimos en el return
+
+
+118.(La funcion de validacion validationUser, necesita que le pase la paswoord tambien, pero como no quiero pasarle ninguna contraseña porque eso seria un metodo aparte) Vamos a modiifcar un poco el metodo de validate-user en helpers/validate-user.js para añadir un parametro adicional "withPassword = true" que por defecto estara en true, e incluyo false en el metodo de validate(userToUpdate, false) en controllers/user.js
+
+119.Entonces lo que hacemos es añadir una comprobacion en helpers/validate-user.js
+colocamos el let password=true y la condicion if(withPassword){
+    ...continua 
+}
+entonces, solamente cuando me llegue el whith password en true,entonces se hace la validacion, entonces no va a tomar en cuenta la passwor si no se la pasamos, si no la pasas y lo envias te devolvera el userIdentity y todo bien, no te va a bloquear esa validacion. Ahora si envias el segundo parametro en true te dara un error porque esperaba una contraseña en la parte de la validacion
+
+    Metodo Editar Usuario
+
+120. En controllers/user.js vamos a buscar si el usuario ya existe en la base de datos. Entonces con el dato que me mande el usuario nuevo vamos a buscar la coincidencias y hacemos un $or que lo que va a hacer es que los objetos que pasemos en un array el va a tener en cuenta en una base sql hace un SELECT * FROM USERS WHERE EMAIL = X EMAIL OR NICK = X NICK. Entonces lo que hacemos es acceder a estos como si fueran variables globales que en realidad estan dentro del metodo userToUpdate.
+Si no encuentra estos usuarios eso significa que no tiene que actualizar nada, si coincide que es un usuario y es el mio lo puedo actualizar, si no no.
+
+121. Vamos a comprobar si otro usuario distinto a mi tiene ese email 
+
+122. Haremos una mejora en el objeto de los datos 116 colocandole tolowercase a el nick y el email para convertirlos siempre a tolowercase
+
+123. Actualizar el usuario en la base de datos, vamos a pasarle el id del usuario identificado que queremos actualizar, el objeto con los datos nuevos que queremos actualizar y el parametro new: true para que nos devuelva el  nuevo usuario actualizado, si todo va bien entonces devolvemos la respuesta con el usuario actualizado y si no todo va bien entonces devolvemos un error.
+
+124. Si todo va bien devolvemos el 200 reusando un return que habiamos hecho     return res.status(200).json({
+      status: 200,
+      message: "Acción para editar y actualizar  los datos de un usuario ",
+      userIdentity,
+      userToUpdate,
+    });
+    y lo reahcemos asi
+        return res.status(200).json({
+      status: "success",
+      user: userUpdated,
+  
+    });
+    devolvemos con los datos actualizados
+
+125. Si no quiero que se envie la passwor incluimos el select
+
+126. Si queremos solventar el problema de no poder colcar el espacio en los apellidos porque me da un error de validacion, entonces podemos ir a helpers/validate-user.js en la validacion de los aperllidos entonces pasamos replace(/\s/g, ""), y esto es un patron de esxpresion regular para que todos los espacios que detecte de manera global los va a sustiuir para nada.
+
+ Middleware de subida de archivos
+
+ 127. Ahora vamos a hacer el metodo de subir una imagen de avatar en controllers/user.js. Para esto debemos configurar nuestro fichero de rutas para la subida de archivos y configurar el middleware para la subida de archivos para que funcione. Entonces primero en el metodo de upload de routes/user.js vamos a aplicarle la autorizacion y un segundo middleware
+
+128. Subimos los archivos con multer en routes/user.js
+
+129.Configracion de Multer, lo que hacemos aqui es definir donde se van a guardar los archivos, vamos a utilizar el objeto multer.disksotrage, y le vamos a colocar la destinacion de los archivos y el filename que seria el nombre de los archivos que se suban. En desitno vamos a pasarle al metodo 3 paramatros el req, file, cb, el cb es un callback para ejecutar esto. Dentro del metodo el cb con el primer parametro null y la direccion fisica donde se van a guardar las imagenes, pero como no tengo esa carpeta de archivos hay que crearla. Luego se hace lo mismo con filename, dento del cb el null luego el nombre del avatar, concatenado con la fecha actual con formato unix otro guion y el nombre original, con eso hemos definido el storge
+
+130. En la raiz del proyecto creamos un folder llamado uploads con otro dentro avatars y ahi es donde se guardaran todos los ficheros
+
+131. Ahora creamos el middleware, creamos la constante de uploadAvatar, de esta manera creamos un middleware que se ejecutara antes de entrar a la accion del controlador/ Lo incluimos como segundo parametro en la ruta de  upload
+
+    Accionde subir avatar
+
+132.  En controllers/usaer.js Con el middleware configurado vamos a hacer el metodo o accion de upload, tenemos que recepcionar id que nos llega por la url, claro, pensaremos que como ya estamos iidentificados con la autoriazacion ya tenemos el id del usuario, entonces lo priomero que tenmeos qure hacer ees recoger el id del duario, el fichero, comprobrar que existe, el nombre del archivo, sacar la extencsion del archivo, si no es correcta la extension borrar archvio y buscar y actualizar al usuario en la base de datos.
+
+133. Recoger el id del usuario, si lo mandas por la respuesta lo puedes ver
+
+134.Recogemos el fichero y comprobar que existe, esto es lo que hariamos si no llega ninguna imagen
+
+135. Sacar el nombre del archivo, pero como todo este proceso como el de actualizar el usuario son trozos de codigo suceptibles de que se generern errores entonces lo metemos en un try/catch y utulizamos el rettur que habiamos usado para subir la imagen del avatar del usuario y le agregamos la propiedad error para sacar el eror que tenemos
+
+
+136. Incluimos el await al metodo upload para esperar a que se procese el archivo que se le envia en la peticion, ya que multer procesa el archivo de forma asincrona, por eso se le incluye el await para esperar a que se procese el archivo antes de continuar con el resto del codigo, y asi poder sacar el nombre del archivo procesado por multer y guardarlo en la base de datos o hacer lo que sea necesario con ese archivo.
+
+137. Sacamos el nombre del archivo procesado por multer 
+
+138. Como puedo obtener y validar la extension del archivo, porque neceisto comprobar que sea una imagen y que no es otro tipo de archivo. pero para poder utilizar el path y tambien el sistema de archivos debo poder importar de node el require(path) y el fs. Con el path soy capaz de extraer la extension de un archivo pasandle el originalname y el tolowercase y creamos una constante de validExtensions
+
+139. Si  no fuera correcta la extension lo que voy a hacer es borrar el archivo
+
+ 140.Si todo va bien buscamos y actualizamos el usuario en la base de datos, para eso usamos el metodo findOneAndUpdate de mongoose y le pasamos el id del usuario identificado que queremos actualizar, el objeto con los datos nuevos que queremos actualizar y el parametro new: true para que nos devuelva el nuevo usuario actualizado, si todo va bien entonces devolvemos la respuesta con el usuario actualizado y si no todo va bien entonces devolvemos un error.
+
+
+ Ver el avatar
+
+
+141. Nota: En el metodo upload le estabamos pasando un metodo por la url pero ya no es necesario porque se lo estamos pasando por la auth asi que lo quitamos en routes/user.js
+
+142. En el metodo de avatar vamos a recibir un fichero
+
+
+Configurando Rutas de articulos
+
+143. Vamops ahora con el controlador de articulos y con el fichero de rutas de articulos, ya tenemos las rutas mas o menos hechas, tenemos controladores para diferentes tipos de cosas y tenemos que terminar algunas configuraciones como por ehjem cargar el middleware de autenticacion y decider en que ryuta vamos a usar la auth y en cual no y luego tambien tenemos los metodos definidos en el controlador para ir hacienbdolos pocc a poco. Pero antes debemos hacer el tema de la autenticacion en las rutas que ya lo hicimos en el archivo de rutas de user,js que fue importar el middleware de autenticacion nada mas. 
+
+144.Entonces en routes/user.js vamos a tomar la importacion de auth y la pegamos en routes/article.js
+
+145. Añadimos el middleware de autenticacion a las rutas que queremos proteger, en este caso a la ruta de guardar un articulo, ya que solo los usuarios identificados pueden guardar un articulo, por lo que añadimos el middleware auth como segundo parametro despues de la ruta y antes del controlador, ya que el middleware se ejecuta antes que el controlador
+
+
+146. Configuramos la subida de los archivos, lo pdemos hacer igual que hicimos con los avatares. Podemos tomar el trozo de cofigo de routes/user.js los pasos 128, 129 y 131 y lo pegamos en routes/article.js,
+
+147. Se ajusta el bloque colocandole posters y se crea la carpeta en uploads/posters. Entonces cuando quiera aplicar este metodo a cualqueira de las rutas pues lo aplicamos pasandolo como intermediario en la ruta
+
+    Crear Articulos
+
+
+148.Recoger los datos del articulo
+
+
+149. Validar los datos
+
+150. Creamos un helper validate-article para validar muy parecido al que hicimos para validar el usuario asi que lo que podemos hacer es copiarlo y pegarlo y cambiarle el nomrbe
+
+151. Importacion del validatos
+
+152.Metodo para validar los datos
+
+153. Validacion en false
+
+154. Validamos el titulo y content, asi que eliminamos nike email password
+
+155. Hacemos la comprobacion
+
+156. Exportamos
+
+157. Importamos en controllers/article.js
+
+158. Validamos pasando el validate(body) denro del try/cath
+
+159. Sacar el id del usuario identificado por el middleware de autenticacion, ya que el articulo tiene que estar relacionado con un usuario, por lo que sacamos el id del usuario identificado con req.user.id, ya que el middleware de autenticacion añade el objeto user al req con los datos del usuario identificado, por lo que podemos sacar el id del usuario identificado con req.user.id
+
+160. Crea objeto para articulos
+
+161. Guardar el articulo en la base de datos, si utilizamos el metodo save de mongoose, este metodo devuelve una promesa, por lo que podemos utilizar el metodo then para manejar la respuesta de la promesa, y el metodo catch para manejar los errores de la promesa, por lo que si el articulo se guarda correctamente entonces se ejecutara el bloque then y se devolvera una respuesta con el articulo guardado, y si hay un error al guardar el articulo entonces se ejecutara el bloque catch y se devolvera una respuesta con el error.
+
+162. Devolver una respuesta
+
+163. Importar nuestro modelo en el controlador, es decir, en controllers/articles.js
+
+    Listar y paginar articulos
+
+164.  Sacar el parametro de las rutas, donde tenemos una que se llama page, por lo que sacamos el parametro page de req.params.page, y si no existe entonces asignamos el valor 1 a page, para mostrar la primera pagina de articulos por defecto, ya que el parametro page es opcional en la ruta, por lo que si no se pasa el parametro page entonces se mostrara la primera pagina de articulos por defecto.
+
+165. Controlar la pagina en la que estamos, si me llegara params.page, de esta manera consigo asignar el valor de params.page a page, y si no me llegara params.page entonces page se quedaria con el valor 1, para mostrar la primera pagina de articulos por defecto, ya que el parametro page es opcional en la ruta.
+
+166.Configurar la paginacion, cuantos articulos tendre por pagina y creamos un objeto de opciones para la paginacion, donde le pasamos la pagina actual, el limite de articulos por pagina y el orden de los articulos, para mostrar los articulos ordenados por fecha de creacion de forma descendente, ya que el metodo paginate de mongoose necesita un objeto de opciones para configurar la paginacion, y el objeto de opciones tiene que tener la propiedad page con el numero de pagina actual, la propiedad limit con el numero de articulos por pagina y la propiedad sort con el orden de los articulos, para mostrar los articulos ordenados por fecha de creacion de forma descendente utilizamos sort: {create_at: -1}, ya que el campo create_at es el campo de fecha de creacion del articulo, y el valor -1 indica que el orden es descendente, mientras que el valor 1 inidicari que el orden es ascendente.
+
+167. Consultar y listar los articulos(moongose paginate con todas sus opciones) Para esto debemos hacer una pequeña modificacion en el models-/article.js Debnemos importar el mongoosepaginate
+
+168.   Agregamos el plugin de paginacion al esquema de articulo en models/articles.js, para poder utilizar el metodo paginate de mongoose, necesitamos agregar el plugin de paginacion al esquema de articulo para poder utilizar el metodo paginate y mostrar los articulos paginados
+
+169. Consulstamos con el metodo paginate en controllers/article.js 
+
+
+170. Devolvemos resultado
+
+    Detalle de un articulo
+
+171. Vamos a hacer el metoddo para sacar el detalle para un articulo en concreto para la ruta de detail que le pasamos un id. Este endpoint es muy importante y lo unico que tenemos que hacer es sacar el id haciendo una constante dentro del metodo detail en controllers/article.js
+
+172.  Buscar el articulo por su id, para buscar el articulo en la base de datos por su id, ya que el metodo findById de mongoose busca un documento en la base de datos por su id, por lo que utilizamos el metodo findById de mongoose 
+
+173. Utilizar el metodo populate de mongoose para mostrar los datos del usuario que ha creado el articulo, ya que el campo user del articulo es un campo de tipo Schema.ObjectId que hace referencia al modelo de usuario, por lo que utilizamos el metodo populate de mongoose para mostrar los datos del usuario que ha creado el articulo, y le pasamos el nombre del campo user para que mongoose sepa que tiene que mostrar los datos del usuario que ha creado el articulo. Utilizamos select para seleccionar los campos que queremos mostrar del usuario, en este caso no queremos mostrar el password, ni el __v, ni el created_at, ni el email, por lo que utilizamos select: "-password -__v -created_at -email" para indicar que no queremos mostrar esos campos del usuario, ya que el metodo populate de mongoose devuelve un objeto con los datos del usuario que ha creado el articulo, y ese objeto tiene los campos password, __v, created_at y email, por lo que utilizamos select para indicar que no queremos mostrar esos campos del usuario.
+
+
+ Populate en mongoose pagination
+
+174. Como es el caso del listado de articulos si le paso el endpoint /api/articles/page/1  y le pasamos todos los articulos que tenemos nos damos cuenta que no esta el populate en esa lista entonces lo que podemos hacer es dentro del metodo de la const options en controllers/articles.js  puedo crear una propiedad nueva
+
+Edicion y borrado de articulos
+
+175. En controllers/article.js en el metodo de update  asi saco los datos que me manda el usuario para actualizar el articulo
+
+
+176. Validar los datos igual que en el metodo save
+
+177. Busqueda y actualizacion de los dato del articulo, entonces le mandamos el body.id, el then y el cathc es el mismo paso
+
+178.Devolver Respuesta
+
+179. Podriamos hacerlo mas simple usando el asyc y el await, hay un poco mas de anidacion que solamente si el articulo es igual al de identidad entonce va a funcionar
+
+180. Comprobacion por si no me llegan los articulos actualizados
+
+181. Antes de actualizar el articulo debo confirmar que ese artiuclo es mio, para eso debo sacar la identidad del Usuario
+
+182.   Buscar el articulo por su id para comprobar que existe y que el usuario identificado es el propietario del articulo, ya que el metodo findById de mongoose busca un documento en la base de datos por su id, por lo que utilizamos el metodo findById de mongoose
+
+183. Se actualizan las rutaS en routes/article.js colocandole auth a upload, remove, update
+
+
+Eliminar articulo
+
+184. El metodo de remove va a ser muy parecido al de editar(update), en controller/article.js, lo copiamos y lo pegamos en el metodo
+
+
+185. En routes/article.js en la ruta de remove debo recibir un identificador, al agregar el id en la ruta, ajustmos la recogida de datos del body y dejamos let id =req.params.id para sacar ese dato
+
+186. En controllers/article.js en el metodo remove quitamos la validacion y nos quedamos scando la identidad del usuario
+
+187. cambiamos el body.id por id
+
+188. En vez de un findByIdAndUpdate hacemos un findByIdAndDelete
