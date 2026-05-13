@@ -27,17 +27,18 @@ const storage = multer.diskStorage({
 const uploadPoster = multer({ storage: storage });
 
 
-//40.Defino las rutas //145. Añadimos el middleware de autenticacion a las rutas que queremos proteger, en este caso a la ruta de guardar un articulo, ya que solo los usuarios identificados pueden guardar un articulo, por lo que añadimos el middleware auth como segundo parametro despues de la ruta y antes del controlador, ya que el middleware se ejecuta antes que el controlador //185. Añadimos el id en la ruta remove para eliminar un articulo, ya que necesitamos el id del articulo para eliminarlo, por lo que añadimos :id en la ruta y luego lo recogemos en el controlador con req.params.id
+//40.Defino las rutas //145. Añadimos el middleware de autenticacion a las rutas que queremos proteger, en este caso a la ruta de guardar un articulo, ya que solo los usuarios identificados pueden guardar un articulo, por lo que añadimos el middleware auth como segundo parametro despues de la ruta y antes del controlador, ya que el middleware se ejecuta antes que el controlador //185. Añadimos el id en la ruta remove para eliminar un articulo, ya que necesitamos el id del articulo para eliminarlo, por lo que añadimos :id en la ruta y luego lo recogemos en el controlador con req.params.id //190 Incluimos el page en by-userId
 router.post("/save", auth, ArticleController.save);
 router.get("/list/:page", ArticleController.list);
 router.get("/detail/:id", ArticleController.detail);
-router.post("/generate-ia", auth, ArticleController.generate);
+router.post("/generate-ia/:theme", auth, ArticleController.generate);
 router.put("/update", auth, ArticleController.update);
 router.delete("/remove/:id", auth, ArticleController.remove);
-router.get("/by-user/:userId", ArticleController.byUser);
+router.get("/by-user/:userId/:page", ArticleController.byUser);
 router.get("/search/:search", ArticleController.search);
-router.put("/upload", auth, ArticleController.upload);
-router.get("/poster/:fill", ArticleController.poster);
+router.put("/upload/:id", [auth, uploadPoster.single("file0")], ArticleController.upload);
+router.get("/poster/:file", ArticleController.poster);
+  
 
 
 

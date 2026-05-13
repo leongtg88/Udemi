@@ -1,3 +1,4 @@
+//Backend Node,Mong,Jwt,Ia\models\article.js
 //46 Importamos Schema de mongoose
 const { Schema, model } = require("mongoose");
 //167. Importamos el modelo de articulo para utilizar el metodo paginate de mongoose, ya que el metodo paginate es un metodo del modelo de articulo, por lo que necesitamos el modelo de articulo para utilizar el metodo paginate y mostrar los articulos paginados

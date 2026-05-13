@@ -22,6 +22,8 @@ Pasos de este proyecto:
 
 11. npm install --save-dev nodemon nos permite actualizar nuestro servidor  cuando hacemos cambios en nuestro codigo (el dev es para desarrollo, en produccion no va a correr)
 
+11.1 npm install --save dotenv nos permite guardar nuestra apikey para que este guardad de manera segura, nos permite crear ficheros con variables de entorno, son ficheros que seran mucho mas aislados y que no se van a estar subiendo a los repositorios
+
 12. En el package.json incluimos en script "start": "node index.js" 
 
 13. Para arrancar el proyecto, en la terminal escribimos npm start, pero antes de eso tenemos que arrancar el servidor de mongodb, para eso vamos a crear un archivo llamado arrancar-proyecto.bat con el siguiente contenido: start cmd.exe /k "cd C:\Program Files\MongoDB\Server\8.2\bin && mongod.exe --dbpath C:\data\db"
@@ -480,3 +482,89 @@ Eliminar articulo
 187. cambiamos el body.id por id
 
 188. En vez de un findByIdAndUpdate hacemos un findByIdAndDelete
+
+Listar Articulos
+
+189. Ahora vamos en controllers/article.js hacer el metodo byUser, para listar todos los articulos de un ususario en concreto, podemos copiar el metodo de listar porque va a ser muy parecido
+
+190. Incluimos en routes/articles.js :page en la ruta de userby id 
+
+191. Controlar la pagina en la que estamos, si me llegara params.page, de esta manera consigo asignar el valor de params.page a page, y si no me llegara params.page entonces page se quedaria con el valor 1, para mostrar la primera pagina de articulos por defecto, ya que el parametro page es opcional en la ruta.
+
+  192.  Configurar la paginacion, cuantos articulos tendre por pagina y creamos un objeto de opciones para la paginacion, donde le pasamos la pagina actual, el limite de articulos por pagina y el orden de los articulos, para mostrar los articulos ordenados por fecha de creacion de forma descendente, ya que el metodo paginate de mongoose necesita un objeto de opciones para configurar la paginacion, y el objeto de opciones tiene que tener la propiedad page con el numero de pagina actual, la propiedad limit con el numero de articulos por pagina y la propiedad sort con el orden de los articulos, para mostrar los articulos ordenados por fecha de creacion de forma descendente utilizamos sort: {create_at: -1}, ya que el campo create_at es el campo de fecha de creacion del articulo, y el valor -1 indica que el orden es descendente, mientras que el valor 1 inidicari que el orden es ascendente.
+ 
+
+193. Consultar y listar los articulos(moongose paginate con todas sus opciones) e incluimos {user: req.params. userId} lo pasamos en el primer  parametro que tenga un onjeto para hacer condiciones, cuyo user sea igual a  {user: req.params.userId} y asi saca todos los resultados posibles
+
+
+Metodo de Busqueda
+
+194. Ahora vamos hacer el metodo de busqueda, tendra tambienn alguna peculiaridad ya que en su ruta recibira un parametro por la url, tenemos que recoger ese parametro y hacer un find con las diferentes condiciones
+
+195. en controllers/article.js  en el metodo search vamos a colocar una variable que se llame searchString.
+Recogemos el parametro de la url y creamos el Article.find en el que podemos meter un objeto y meter diferentes condiciones como un or lo que hace equivalente a sql or content lo que sea, que el title tenga unos parametros, que el string contenga el texto que envio, al final es una busqueda por expresion regular y lo mismo vamos a hacr con el contenido. Luego hacemos un sort para ordenarlo descendete
+
+196. Puede ser que no haya ningun articulo que coincida con la busqueda, entocnes lo que vamos a hacer es un if que si no hay articles devolvemos un resultado 404 si lo hay devolvemos un succes y los articulos
+
+    Subir archivos
+
+197. Hace algunas clases habiamos visto como configurar Multer dentro del fichero de rutas de los articulos al igual que hicimos con las rutas de los usuarios y en el controlador de articulos tenemos un metodo para subir los archivos y  guardarlos en la base de datos y en el controlador de usuarios, entonces lo que vamos a hacer es copiar todo ese contenido completo y lo vamos a pegar en controllers/article.js y vamos a sustituir por el que tenemos ahi
+
+198.Recogemos el ID del usuario porque necesitamoscomprbar tambien que el articulo que vamos a actualizar es del usuario
+
+199. Comprobamos si el archivo nos llega
+
+200. En el caso de que llegue el archivo vamos a comprobar la extension y si la extension no fuera valida, lo que vamos a hacer es borrar el archivo
+
+201. Si todo va bien buscamos y actualizamos el articulo en la base de datos, para eso usamos el metodo findOneAndUpdate de mongoose y le pasamos el id del usuario identificado que queremos actualizar, el objeto con los datos nuevos que queremos actualizar y el parametro new: true para que nos devuelva el nuevo articulo actualizado, si todo va bien entonces devolvemos la respuesta con el articulo actualizado y si no todo va bien entonces devolvemos un error.
+
+202. Hasta este momento no estoy comprobando si el articulo es propiedad del usuario. Vamos a comprobar para que el usuario dueño  de  ese articulo pueda actualizar. Despues de comprobar la extension lo haremos.
+
+203. Incluir en article/routes el [auth, uploadPoster.single("file0")] 
+
+204 y 205 Importaciones del nodejs y el fs 
+
+Mostrar poster
+
+206.Ahora vamos a hacer el metodo de poster que es muy similar al meotodo que tenemos en el controlador de usuarios para mostrar un avatar, que es practicamente igual, lo vamos a copiar de controllers/users.js y lo vamos a pegar en el controlador de articulos en el metodo posters
+
+ai
+
+207. Instalamos el paquete npm install --save dotenv nos permite guardar nuestra apikey para que este guardad de manera segura, nos permite crear ficheros con variables de entorno, son ficheros que seran mucho mas aislados y que no se van a estar subiendo a los repositorios Ya que vamos a estar trabajadndo con la apikey de openai
+
+208. Creamos el archivo .env
+
+209, Vamos a trabajar en el controlador de articulos en el metodo generate. Primero importamos al inicio arhcivo dotenv el valor de la clave OPENAI_API_KEY para poder utilizar la api de openai en el metodo generate,\
+
+/210. Importamos el cliente de openai para poder utilizar la api de openai en el metodo generate, para eso importamos la clase OpenAIApi del paquete openai,
+
+211. Fuera del metodo geneate creamos la varriable con el objetoi de openai, con esta nos conectamos a los servidores de openai, esta apokey se enviara en todas las peticiones y consultas que jhaga  a los modelos de ia
+
+212. Cargamos la configuracion de dotenv
+
+Generamos Ruta y parametro
+
+213. En routes/article.js  a la ruta de generate ia le pasamos el parametro theme
+
+214. Recibit tematica del articulo const { theme }  = req.params;
+
+215. Organizar el prompt
+
+
+215.1 Prompt del sistema
+
+
+215.2 . Prompt del usuario
+
+
+216 . LLamar al llm o modelo de openai, como estamos haciendo la llamada a openai la funcion generate tenemos que volverla async ya que hay que esperar que responda. Con el objeto  "const compltion " conectamos con el cha de openai con el objeto completions y create,
+
+217 . Recoger el resultado podemos reutizar las mismas variables del componente save donde llamamos el userid del body y creamos el objeto para articulos
+
+218. Vincular le usuario , sacamos el id del usario por medio de la propiedad user y en donde vincularia el body anteriormente, ahora lo que hacemos es vincular el  articleObject al usuario
+
+219. Crear el objeto para articulos, le pasamos el articleObject
+
+220. Guardar el articulo en la base de datos (metodo save), le hacemos el save enl base de datos y esperamos la respuesta de la peticion, si no me llega un articulo  me genera el 404 si no pues nos llega el articulo generado.
+
+221 . Devolcer un resultado

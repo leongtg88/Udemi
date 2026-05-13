@@ -1,3 +1,4 @@
+//Backend Node,Mong,Jwt,Ia\index.js
 console.log("Archivo index.js cargado:", new Date().toLocaleTimeString());
 
 // 14.Importar dependencias

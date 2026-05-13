@@ -1,3 +1,5 @@
+
+//Backend Node,Mong,Jwt,Ia\controllers\user.js
 //138. Importamos el modulo path de node para poder trabajar con las rutas de los archivos, como por ejemplo, para sacar la extension de un archivo, para construir la ruta de un archivo, etc.
 const path = require("path");
 const fs = require("fs");
@@ -266,7 +268,7 @@ if (!userUpdated) {
 const upload = async (req, res) => {
 
   //133.Recoger el id del usuario identificado
-  const id = req.user.id;
+  const userId = req.user.id;
 
   //134.Recoger el fichero de la peticion
   if(!req.file){

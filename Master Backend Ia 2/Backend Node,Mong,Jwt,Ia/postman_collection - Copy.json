@@ -1,0 +1,458 @@
+{
+    "info": {
+        "name": "Backend Node Mongo JWT API",
+        "description": "Colección para probar el proyecto con Postman.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "version": "1.0.0"
+    },
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3907/api"
+        },
+        {
+            "key": "token",
+            "value": ""
+        }
+    ],
+    "item": [
+        {
+            "name": "General",
+            "item": [
+                {
+                    "name": "Pruebitas",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/pruebitas",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "pruebitas"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Usuarios",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Juan\",\n  \"surname\": \"Pérez\",\n  \"nick\": \"juanp\",\n  \"email\": \"juan@example.com\",\n  \"password\": \"password123\",\n  \"bio\": \"Desarrollador backend\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user/register",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "register"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"juan@example.com\",\n  \"password\": \"password123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user/login",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "login"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Profile",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/user/profile/:id",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "profile",
+                                ":id"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update user",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Juan\",\n  \"surname\": \"Pérez\",\n  \"nick\": \"juanp\",\n  \"email\": \"juan@example.com\",\n  \"bio\": \"Backend developer actualizado\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user/update",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "update"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Upload avatar",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file0",
+                                    "type": "file",
+                                    "src": ""
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/user/upload",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "upload"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get avatar",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/user/avatar/:filename",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "avatar",
+                                ":filename"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Protected user route",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/user/solo-para-identificados",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "user",
+                                "solo-para-identificados"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Artículos",
+            "item": [
+                {
+                    "name": "Save article",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"title\": \"Mi primer artículo\",\n  \"content\": \"Este es el contenido del artículo de prueba.\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/article/save",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "save"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "List articles",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/article/list/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "list",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Article detail",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/article/detail/:id",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "detail",
+                                ":id"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Generate article with IA",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/article/generate-ia/:theme",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "generate-ia",
+                                ":theme"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Update article",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"id\": \"<ARTICLE_ID>\",\n  \"title\": \"Título actualizado\",\n  \"content\": \"Contenido actualizado del artículo.\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/article/update",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "update"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Delete article",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/article/remove/:id",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "remove",
+                                ":id"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Articles by user",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/article/by-user/:userId/1",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "by-user",
+                                ":userId",
+                                "1"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Search articles",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/article/search/:search",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "search",
+                                ":search"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Upload article poster",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "file0",
+                                    "type": "file",
+                                    "src": ""
+                                },
+                                {
+                                    "key": "id",
+                                    "type": "text",
+                                    "value": "<ARTICLE_ID>"
+                                }
+                            ]
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/article/upload/:id",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "upload",
+                                ":id"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Get poster",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/article/poster/:file",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "article",
+                                "poster",
+                                ":file"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
